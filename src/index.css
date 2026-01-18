@@ -1,0 +1,18 @@
+.duration-300 {
+  animation-duration: 300ms;
+}
+.animated-in {
+  animation-name: navMenu;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+@keyframes navMenu {
+  0%{
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  100%{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
