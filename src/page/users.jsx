@@ -16,7 +16,7 @@ const Users = () => {
   const [pages, setPages] = useState(1);
 
   const navigate = useNavigate();
-
+  const apiUrl = import.meta.env.VITE_MAIN_API;
   useEffect(() => {
     const token = localStorage.getItem("token");
     setLoading(true);
@@ -26,7 +26,7 @@ const Users = () => {
       ...(search && { q: search })
     });
 
-    fetch(`/api/users?${params.toString()}`, {
+    fetch(`${apiUrl}/api/users?${params.toString()}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())

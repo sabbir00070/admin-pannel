@@ -7,6 +7,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  
+  const apiUrl = import.meta.env.VITE_MAIN_API;
 
   const navigate = useNavigate();
 
@@ -17,7 +19,7 @@ const Login = () => {
 
     try {
       const res = await fetch(
-        `/api/login?chat_id=${chatId}&password=${password}`
+        `${apiUrl}/api/login?chat_id=${chatId}&password=${password}`
       );
       const data = await res.json();
 

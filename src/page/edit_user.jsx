@@ -6,10 +6,11 @@ const EditUser = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+    const apiUrl = import.meta.env.VITE_MAIN_API;
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch(`/api/users/${id}`, {
+    fetch(`${apiUrl}/api/users/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json"
@@ -25,7 +26,7 @@ const EditUser = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    fetch(`/api/users/${id}`, {
+    fetch(`${apiUrl}/api/users/${id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,

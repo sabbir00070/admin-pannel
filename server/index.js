@@ -2,15 +2,17 @@ import express from "express";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import axios from "axios";
+import cors from "cors";
 import connectDB from "./config/db.js";
 import User from "./models/User.js";
 import Admin from "./models/Admin.js";
 import Maintenance from "./models/Maintenance.js";
 
-dotenv.config({ path: "./server/.env" });
+dotenv.config();
 connectDB();
 
 const app = express();
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
@@ -331,4 +333,6 @@ app.get("/api/latest_users", auth, async (req, res) => {
   }
 });
 
-app.listen(PORT);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});

@@ -19,12 +19,12 @@ const Maintenance = () => {
   const [error, setError] = useState("");
 
   const token = localStorage.getItem("token");
-
+  const apiUrl = import.meta.env.VITE_MAIN_API;
   const toLocalDateTime = date =>
     date ? new Date(date).toISOString().slice(0, 16) : "";
 
   useEffect(() => {
-    fetch("/api/getUpdates", {
+    fetch(`${apiUrl}/api/getUpdates`, {
       headers: {
           "Content-Type": "application/json",
       Authorization: `Bearer ${token}`
@@ -57,7 +57,7 @@ const Maintenance = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/maintenance", {
+      const res = await fetch(`${apiUrl}/api/maintenance`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

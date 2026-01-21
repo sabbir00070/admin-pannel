@@ -25,6 +25,8 @@ const StatCard = ({ icon: Icon, value, label, tone }) => (
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
   const [latestUsers, setLatestUsers] = useState([]);
+  
+    const apiUrl = import.meta.env.VITE_MAIN_API;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -35,7 +37,7 @@ const Dashboard = () => {
 
     const headers = { Authorization: `Bearer ${token}` };
 
-    fetch("/api/dashboard", { headers })
+    fetch(`${apiUrl}/api/dashboard`, { headers })
       .then(res => (res.status === 401 ? Promise.reject() : res.json()))
       .then(setStats)
       .catch(() => {
@@ -43,7 +45,7 @@ const Dashboard = () => {
         window.location.href = "/login";
       });
 
-    fetch("/api/latest_users", { headers })
+    fetch(`${apiUrl}/api/latest_users`, { headers })
       .then(res => res.json())
       .then(setLatestUsers)
       .catch(() => {});

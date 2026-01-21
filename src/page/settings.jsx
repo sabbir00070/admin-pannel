@@ -13,11 +13,12 @@ const Settings = () => {
 
   const token = localStorage.getItem("token");
   const adminId = localStorage.getItem("admin_id");
+    const apiUrl = import.meta.env.VITE_MAIN_API;
 
   useEffect(() => {
     if (!adminId || !token) return;
 
-    fetch(`/api/admin/${adminId}/profile`, {
+    fetch(`${apiUrl}/api/admin/${adminId}/profile`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -47,7 +48,7 @@ const Settings = () => {
     setLoading(true);
 
     try {
-      const res = await fetch(`/api/users/${adminId}/change_pass`, {
+      const res = await fetch(`${apiUrl}/api/users/${adminId}/change_pass`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
